@@ -1,0 +1,64 @@
+﻿<Window x:Class="MVVMLogin.View.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMLogin.View"
+        xmlns:viewModel ="clr-namespace:MVVMLogin.ViewModel"
+        xmlns:cusstomcontrols="clr-namespace:MVVMLogin.CusstomControls"
+        mc:Ignorable="d"
+        Title="LoginView" Height="450" Width="800" FlowDirection="RightToLeft">
+    <Window.DataContext>
+        <viewModel:LoginViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibility"/>
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource booleanToVisibility}"/>
+    </Window.Visibility>
+    <Grid >
+        
+      
+
+
+        <Border Grid.Column="0"  CornerRadius="18" Margin="10">
+
+
+            <Grid  >
+
+               
+
+                <Label Grid.Row="0" Grid.ColumnSpan="3" Foreground="#604E5F" VerticalAlignment="Top" HorizontalAlignment="Center" Content="ورود کاربران" Margin="0" FontWeight="Bold"/>
+
+                <Separator/>
+
+                <StackPanel Margin="10">
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="نام کاربری "  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBox Background="green" Width="150" x:Name="UserNameTxt" Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="40"/>
+
+
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="رمز عبور"  />
+                    <cusstomcontrols:BindablePasswordBox 
+                    Password="{Binding Password}"
+                     Width="150" Height="40" Background="green"/>
+
+                    <CheckBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" x:Name="RememberMe" Content="مرا به خاطر بسپار"  Margin="10 10 0 0" Padding="10 -10 10 10" Height="40" HorizontalContentAlignment="Left"/>
+
+                
+
+                <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" x:Name="NotifMessages" 
+                         Text="{Binding ErrorMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="Red"/>
+
+                <Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" x:Name="SubmitBtn"  
+                        Content="تایید" Command="{Binding LoginCommand}" Width="100" Height="40" Margin="0" FontSize="20"  />
+                <Button Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Top" x:Name="CancleBtn" 
+                        Content="انصراف" Command="{Binding CancleCommand}" Width="100" Height="40" Margin="0" FontSize="20"  />
+
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
