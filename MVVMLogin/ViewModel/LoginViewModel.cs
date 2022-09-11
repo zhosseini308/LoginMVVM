@@ -16,13 +16,13 @@ namespace MVVMLogin.ViewModel
     public class LoginViewModel : ViewModelBase
     {
         //fields
-        private string _username = "Username";
+        private string _username = "UserName";
         private SecureString _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
         private IUserRepository userRepository;
 
-        public string Username
+        public string UserName
         {
             get
             {
@@ -31,7 +31,7 @@ namespace MVVMLogin.ViewModel
             set
             {
                 _username = value;
-                OnPropertyChanged(nameof(Username));
+                OnPropertyChanged(nameof(UserName));
             }
         }
         public SecureString Password
@@ -85,7 +85,7 @@ namespace MVVMLogin.ViewModel
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
-            if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3
+            if (string.IsNullOrWhiteSpace(UserName) || UserName.Length < 3
                 || Password == null || Password.Length < 3)
                 validData = false;
             else
@@ -95,11 +95,11 @@ namespace MVVMLogin.ViewModel
 
         private void ExecuteLoginCommand(object obj)
         {
-            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(UserName, Password));
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username) ,null);
+                    new GenericIdentity(UserName) ,null);
                 IsViewVisible = false;
             }
             else

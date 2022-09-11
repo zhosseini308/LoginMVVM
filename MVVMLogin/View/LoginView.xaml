@@ -42,7 +42,7 @@
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="رمز عبور"  />
                     <cusstomcontrols:BindablePasswordBox 
-                    Password="{Binding Password}"
+                    Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Width="150" Height="40" Background="green"/>
 
                     <CheckBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" x:Name="RememberMe" Content="مرا به خاطر بسپار"  Margin="10 10 0 0" Padding="10 -10 10 10" Height="40" HorizontalContentAlignment="Left"/>
